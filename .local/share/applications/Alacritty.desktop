@@ -6,7 +6,7 @@ Icon=Alacritty
 Terminal=false
 Categories=System;TerminalEmulator;
 
-Name=A Terminal
+Name=Terminal
 GenericName=Terminal
 Comment=A fast, cross-platform, OpenGL terminal emulator
 StartupWMClass=Alacritty
