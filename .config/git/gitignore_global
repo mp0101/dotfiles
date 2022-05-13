@@ -23,6 +23,7 @@ Workspaces
 .config/mpd/*.mpd
 .config/mpd/*.sql
 .config/ncmpcpp/*.log
+.config/nvim/plugin/*
 
 .config/autostart
 .config/dconf
