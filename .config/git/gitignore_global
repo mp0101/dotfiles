@@ -19,6 +19,11 @@ Workspaces
 .config/mimeapps.list
 .config/pavucontrol.ini
 
+.config/mpd/mpd-playlists
+.config/mpd/*.mpd
+.config/mpd/*.sql
+.config/ncmpcpp/*.log
+
 .config/autostart
 .config/dconf
 .config/discord
