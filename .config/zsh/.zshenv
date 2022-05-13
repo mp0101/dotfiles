@@ -15,6 +15,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # export BACKUP_DIR="$HOME/.backup"
 
 export SHELL="/usr/bin/zsh"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 
 export EDITOR="nvim"

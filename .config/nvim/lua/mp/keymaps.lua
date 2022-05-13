@@ -20,9 +20,9 @@ map ( 'i', "KJ", '<Esc>', { silent = true } )
 map ( 'i', "jk", '<Esc>', { silent = true } )
 map ( 'i', "kj", '<Esc>', { silent = true } )
 -- Keybinds for editing init files
-map("n", "<Leader>s", require("plugins.telescope").search_dotfiles, { silent = true })
+map("n", "<Leader>fd", require("plugins.telescope").search_dotfiles, { silent = true })
 -- telescope fuzzy find stuff
-map("n", "<Leader>f.", require("telescope.builtin").find_files, { silent = true })
-map("n", "<Leader>ff", require("plugins.telescope").search_workspace, { silent = true })
+map("n", "<Leader>ff", require("telescope.builtin").find_files, { silent = true })
+map("n", "<Leader>fw", require("plugins.telescope").search_workspace, { silent = true })
 map("n", "<Leader>fg", require("telescope.builtin").live_grep, { silent = true })
 map("n", "<Leader>fh", require("telescope.builtin").help_tags, { silent = true })
