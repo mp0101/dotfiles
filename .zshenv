@@ -1,0 +1,1 @@
+/home/mp/.config/zsh/.zshenv

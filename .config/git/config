@@ -1,0 +1,19 @@
+[user]
+  name = M Rizal Rifai
+  email = mrizxlrifxi@protonmail.com
+
+[core]
+  autocrlf = input
+  excludesfile = ~/.config/git/gitignore_global
+  pager = deltaconfig
+  commitGraph = true
+
+[help]
+  autocorrect = 1
+
+[init]
+  defaultBranch = main
+
+[color]
+  ui = auto
+
