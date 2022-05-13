@@ -19,7 +19,7 @@
         <Filename>xfce4-mail-reader.desktop</Filename>
         <Filename>xfce4-web-browser.desktop</Filename>
         <Separator/>
-        <Menuname>Settings</Menuname>
+        <Filename>xfce4-settings-manager.desktop</Filename>
         <Separator/>
         <Merge type="all"/>
         <Separator/>

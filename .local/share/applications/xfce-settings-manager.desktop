@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=X Settings
+NoDisplay=true
 Name[am]=የ ማሰናጃዎች አስተዳዳሪ
 Name[ar]=مدير الإعدادات
 Name[ast]=Xestor d'axustes

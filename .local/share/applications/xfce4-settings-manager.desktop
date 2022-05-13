@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=xfce4-settings-manager
+Icon=org.xfce.xfwm4-tweaks
+StartupNotify=true
+Terminal=false
+Categories=X-XFCE;X-Xfce-Toplevel;
+OnlyShowIn=XFCE;
+X-AppStream-Ignore=True
+Name=Settings
+Comment=Settings
