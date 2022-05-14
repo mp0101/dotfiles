@@ -1,4 +1,9 @@
+if not pcall(require,'telescope') then
+  return
+end
+
 -- Keymaps Configurations
+local fns = require('mp.functions')
 local map = vim.keymap.set
 local g = vim.g
 
@@ -26,3 +31,6 @@ map("n", "<Leader>ff", require("telescope.builtin").find_files, { silent = true 
 map("n", "<Leader>fw", require("plugins.telescope").search_workspace, { silent = true })
 map("n", "<Leader>fg", require("telescope.builtin").live_grep, { silent = true })
 map("n", "<Leader>fh", require("telescope.builtin").help_tags, { silent = true })
+-- Open file manager
+map('n', '<leader>dd', fns.file_explorer)
+map('n', '<leader>da', function() fns.file_explorer(vim.fn.getcwd()) end)

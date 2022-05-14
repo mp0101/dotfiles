@@ -5,10 +5,14 @@ if theme then vim.cmd('colorscheme kanagawa') end
 set.background = 'dark'
 set.termguicolors = true
 set.cursorline = true
+set.laststatus = 3
 
 set.mouse = 'a'
 set.number = true
 set.relativenumber = false
+
+set.colorcolumn = '81'
+set.signcolumn = 'yes:1'
 
 set.swapfile = false
 set.backup = false
