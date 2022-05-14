@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=XDvi
+GenericName=DVI Viewer
+Exec=xdvi %f
+NoDisplay=true
+Type=Application
+Terminal=false
+Categories=Graphics;Viewer;
+Keywords=documents;
