@@ -16,6 +16,7 @@ Workspaces
 .I*
 .X*
 
+.config/QtProject.conf
 .config/mimeapps.list
 .config/pavucontrol.ini
 
@@ -26,6 +27,7 @@ Workspaces
 .config/nvim/plugin/*
 
 .config/autostart
+.config/chromium
 .config/dconf
 .config/discord
 .config/git/gittoken

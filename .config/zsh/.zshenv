@@ -13,6 +13,15 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # export XDG_BIN_HOME="$HOME/.bin"
 # export XDG_MBIN_HOME="$HOME/.mybin"
 # export BACKUP_DIR="$HOME/.backup"
+#
+typeset -U path PATH
+path=(
+  ${XDG_CONFIG_HOME}/npm/bin
+  ${XDG_DATA_HOME}/goroot/bin
+
+  $path
+)
+export PATH
 
 export SHELL="/usr/bin/zsh"
 export TERMINAL="alacritty"
@@ -52,7 +61,6 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export GOROOT="${XDG_DATA_HOME}/goroot"
 export GOPATH="${XDG_DATA_HOME}/gopath"
 export GOCACHE="${XDG_CACHE_HOME}/go-build"
-export GOBIN="${GOROOT}/bin"
 
 export NPM_CONFIG_PREFIX="${XDG_CONFIG_HOME}/npm"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
