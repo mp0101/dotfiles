@@ -51,5 +51,6 @@ Workspaces
 .local/share/Trash
 .local/share/themes
 .local/share/xfce4
+.local/share/zathura
 .local/share/lesshst
 .local/share/recently*

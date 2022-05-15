@@ -1,18 +1,18 @@
-if not pcall(require, 'lualine') then
+if not pcall(require, "lualine") then
   return
 end
 
 local word_count = function()
-    if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
-        return string.format("%sW", vim.fn.wordcount().visual_words)
-    else
-        return string.format("%sW", vim.fn.wordcount().words)
-    end
+  if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+    return string.format("%sW", vim.fn.wordcount().visual_words)
+  else
+    return string.format("%sW", vim.fn.wordcount().words)
+  end
 end
 
 require("lualine").setup({
   options = {
-    theme = 'kanagawa',
+    theme = "kanagawa",
     section_separators = { left = "", right = "" },
     component_separators = { left = "│", right = "│" },
     globalstatus = true,
@@ -24,41 +24,40 @@ require("lualine").setup({
       {
         "diff",
         symbols = {
-                    added = " ",
-                    modified = " ",
-                    removed = " ",
-                },
-            },
-            {
-                "diagnostics",
-                symbols = {
-                    error = " ",
-                    warn = " ",
-                    info = " ",
-                    hint = " ",
-                },
-            }
+          added = " ",
+          modified = " ",
+          removed = " ",
         },
-        lualine_c = {
-            {
-                "filetype",
-                icon_only = true,
-                padding = {
-                    left = 1,
-                    right = 0,
-                },
-                separator = {
-                    right = "",
-                },
-            },
-            "filename",
+      },
+      {
+        "diagnostics",
+        symbols = {
+          error = " ",
+          warn = " ",
+          info = " ",
+          hint = " ",
         },
-        lualine_x = { word_count },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
+      }
     },
-    extensions = {
-        "nvim-tree",
-    }
+    lualine_c = {
+      {
+        "filetype",
+        icon_only = true,
+        padding = {
+          left = 1,
+          right = 0,
+        },
+        separator = {
+          right = "",
+        },
+      },
+      "filename",
+    },
+    lualine_x = { word_count },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
+  },
+  extensions = {
+    "nvim-tree",
+  }
 })
-
