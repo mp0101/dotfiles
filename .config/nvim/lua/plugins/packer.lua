@@ -8,11 +8,11 @@ local util = require "packer.util"
 
 local packerUserConfig = augroup("packerUserConfig", {})
 autocmd("BufWritePost", {
-    pattern = {
-        "packer.lua",
-    },
-    command = "source <afile> | PackerCompile",
-    group = packerUserConfig,
+  pattern = {
+    "packer.lua",
+  },
+  command = "source <afile> | PackerCompile",
+  group = packerUserConfig,
 })
 
 packer.startup({
@@ -34,7 +34,6 @@ packer.startup({
       requires = { { "nvim-lua/plenary.nvim" } }
     })
     use("neovim/nvim-lspconfig")
-    use("williamboman/nvim-lsp-installer")
     use("hrsh7th/nvim-cmp")
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-cmdline")

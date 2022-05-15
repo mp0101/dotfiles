@@ -71,14 +71,14 @@ autocmd("BufWritePre", {
 -- Opens PDF files in Zathura instead of viewing the binary in Neovim
 local openPDF = augroup("openPDF", {})
 autocmd("BufReadPost", {
-    pattern = {
-        "*.pdf",
-    },
-    callback = function()
-        vim.fn.jobstart("zathura '" .. vim.fn.expand("%") .. "'", {
-            detach = true,
-        })
-        vim.api.nvim_buf_delete(0, {})
-    end,
-    group = openPDF,
+  pattern = {
+    "*.pdf",
+  },
+  callback = function()
+    vim.fn.jobstart("zathura '" .. vim.fn.expand("%") .. "'", {
+      detach = true,
+    })
+    vim.api.nvim_buf_delete(0, {})
+  end,
+  group = openPDF,
 })

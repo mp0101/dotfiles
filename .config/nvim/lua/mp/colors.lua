@@ -1,5 +1,4 @@
-local status_ok, color_scheme = pcall(require, 'onedark')
-if not status_ok then
+if not pcall(require, "onedark") then
   return
 end
 
@@ -55,4 +54,3 @@ M.rose_pine = {
 }
 
 return M
-

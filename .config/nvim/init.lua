@@ -18,6 +18,7 @@ require "plugins.telescope"
 
 -- Parser, Lsp, Completions
 require "plugins.treesitter"
-
+require "plugins.lspconfig"
+require "plugins.completions"
 require "plugins.presence"
 require "plugins.vimtex"
