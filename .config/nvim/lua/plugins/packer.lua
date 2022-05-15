@@ -1,12 +1,25 @@
 _ = vim.cmd [[packadd packer.nvim]]
 
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
 local packer = require "packer"
 local util = require "packer.util"
+
+local packerUserConfig = augroup("packerUserConfig", {})
+autocmd("BufWritePost", {
+    pattern = {
+        "packer.lua",
+    },
+    command = "source <afile> | PackerCompile",
+    group = packerUserConfig,
+})
 
 packer.startup({
   function(use)
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim")
+    use("kyazdani42/nvim-web-devicons")
     use({
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
@@ -32,6 +45,7 @@ packer.startup({
     use("saadparwaiz1/cmp_luasnip")
     use("L3MON4D3/LuaSnip")
     use("j-hui/fidget.nvim")
+
     use({
       "jose-elias-alvarez/null-ls.nvim",
       requires = "nvim-lua/plenary.nvim",
@@ -41,7 +55,9 @@ packer.startup({
       "nvim-telescope/telescope-fzf-native.nvim",
       run = "make",
     })
+
     use("nvim-telescope/telescope-file-browser.nvim")
+
     use({
       "tamago324/lir.nvim",
       requires = { { "tamago324/lir-git-status.nvim" },
@@ -67,11 +83,31 @@ packer.startup({
     })
 
     use("numToStr/Comment.nvim")
-    use("nvim-lualine/lualine.nvim")
     use("lukas-reineke/indent-blankline.nvim")
-    use("tjdevries/colorbuddy.nvim")
-    use("bkegley/gloombuddy")
-    use("rebelot/kanagawa.nvim")
+    use("feline-nvim/feline.nvim")
+
+    use('navarasu/onedark.nvim')
+    use('tanvirtin/monokai.nvim')
+
+    use({
+      'rose-pine/neovim',
+      as = 'rose-pine'
+    })
+
+    use({
+      "AckslD/nvim-trevJ.lua",
+      config = function()
+        require("trevj").setup()
+      end
+    })
+
+    use("tpope/vim-surround")
+    use("lervag/vimtex")
+    use("ThePrimeagen/vim-be-good")
+    use("andweeb/presence.nvim")
+    use("norcalli/nvim-colorizer.lua")
+    use("tpope/vim-fugitive")
+    use("iamcco/markdown-preview.nvim")
 
   end,
   config = {

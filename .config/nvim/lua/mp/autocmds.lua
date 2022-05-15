@@ -10,8 +10,28 @@ autocmd("TextYankPost", {
   end
 })
 
+-- window to close with "q"
+local windowClose = augroup("windowClose", {})
+autocmd("FileType", {
+  group = windowClose,
+  pattern = { "help", "startuptime", "qf", "lspinfo" },
+  command = [[nnoremap <buffer><silent> q :close<CR>]]
+})
+autocmd("FileType", {
+  pattern = "man",
+  command = [[nnoremap <buffer><silent> q :quit<CR>]]
+})
+
+-- don't auto comment new line
+local disableComment = augroup("autoComment", {})
+autocmd("BufEnter", {
+  group = disableComment,
+  command = [[set formatoptions-=cro]]
+})
+
+-- Show Cursorline only active window
 augroup("CursorLineControl", { clear = true })
-local set_cursorline = function(event, value, pattern)
+local setCursorLine = function(event, value, pattern)
   vim.api.nvim_create_autocmd(event, {
     group = "CursorLineControl",
     pattern = pattern,
@@ -20,9 +40,9 @@ local set_cursorline = function(event, value, pattern)
     end,
   })
 end
-set_cursorline("WinLeave", false)
-set_cursorline("WinEnter", true)
-set_cursorline("FileType", false, "TelescopePrompt")
+setCursorLine("WinLeave", false)
+setCursorLine("WinEnter", true)
+setCursorLine("FileType", false, "TelescopePrompt")
 
 -- Save/restore code folds
 local saveFolds = augroup("saveFolds", {})
@@ -46,4 +66,19 @@ autocmd("BufWritePre", {
   },
   callback = vim.lsp.buf.formatting_sync,
   group = formatCode,
+})
+
+-- Opens PDF files in Zathura instead of viewing the binary in Neovim
+local openPDF = augroup("openPDF", {})
+autocmd("BufReadPost", {
+    pattern = {
+        "*.pdf",
+    },
+    callback = function()
+        vim.fn.jobstart("zathura '" .. vim.fn.expand("%") .. "'", {
+            detach = true,
+        })
+        vim.api.nvim_buf_delete(0, {})
+    end,
+    group = openPDF,
 })

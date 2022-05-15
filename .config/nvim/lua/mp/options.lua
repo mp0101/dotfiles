@@ -1,6 +1,4 @@
 local set = vim.opt
-local theme = pcall(require, "kanagawa")
-if theme then vim.cmd("colorscheme kanagawa") end
 
 set.background = "dark"
 set.termguicolors = true
@@ -15,8 +13,11 @@ set.relativenumber = false
 set.colorcolumn = "81"
 set.signcolumn = "yes:1"
 
+set.autowriteall = true
 set.swapfile = false
 set.backup = false
+set.wrap = true
+set.lazyredraw = true
 
 set.showmode = false
 set.showcmd = true
@@ -40,4 +41,6 @@ set.smartcase = true
 set.ignorecase = true
 set.scrolloff = 10
 
+set.completeopt = {'menu', 'menuone', 'noselect'}
 set.clipboard = "unnamedplus"
+

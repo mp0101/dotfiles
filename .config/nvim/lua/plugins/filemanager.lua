@@ -6,8 +6,11 @@ local fm = require("lir")
 local actions = require("lir.actions")
 local gfm = require("lir.git_status")
 
+local fns = require('mp.functions')
+local map = vim.keymap.set
+
 gfm.setup({
-  show_ignored = true
+  show_ignored = false
 })
 
 fm.setup({
@@ -33,3 +36,7 @@ fm.setup({
     end
   }
 })
+
+-- Open file manager
+map("n", "<leader>dd", fns.file_explorer)
+map("n", "<leader>da", function() fns.file_explorer(vim.fn.getcwd()) end)

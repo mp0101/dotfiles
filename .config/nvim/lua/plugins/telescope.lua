@@ -2,6 +2,7 @@ if not pcall(require, "telescope") then
   return
 end
 
+local map = vim.keymap.set
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
@@ -19,9 +20,7 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 
-local M = {}
-
-M.search_dotfiles = function()
+search_dotfiles = function()
   builtin.find_files({
     prompt_title = "Configuration files",
     cwd = vim.fn["stdpath"]("config"),
@@ -29,7 +28,7 @@ M.search_dotfiles = function()
   })
 end
 
-M.search_workspace = function()
+search_workspace = function()
   builtin.find_files({
     prompt_title = "Workspace files",
     cwd = vim.env.WORKSPACE,
@@ -60,4 +59,10 @@ M.search_workspace = function()
   })
 end
 
-return M
+-- Keybinds for editing init files
+map("n", "<Leader>fd", search_dotfiles, { silent = true })
+-- telescope fuzzy find stuff
+map("n", "<Leader>ff", builtin.find_files, { silent = true })
+map("n", "<Leader>fw", search_workspace, { silent = true })
+map("n", "<Leader>fg", builtin.live_grep, { silent = true })
+map("n", "<Leader>fh", builtin.help_tags, { silent = true })

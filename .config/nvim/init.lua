@@ -1,14 +1,23 @@
-require "mp.settings"
+-- User Configurations
+require "mp.options"
 require "mp.keymaps"
 require "mp.autocmds"
 
+-- Download Package
 if require "plug" () then
   return
 end
 
-require "plugins.install"
-require "plugins.lualine"
-require "plugins.indent-blankline"
-require "plugins.lir"
-require "plugins.telescope"
+-- Loads Packages
+require "plugins.packer"
+require "plugins.filemanager"
+require "plugins.statusline"
+require "plugins.blankline"
 require "plugins.comment"
+require "plugins.telescope"
+
+-- Parser, Lsp, Completions
+require "plugins.treesitter"
+
+require "plugins.presence"
+require "plugins.vimtex"

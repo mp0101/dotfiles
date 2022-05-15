@@ -3,6 +3,7 @@ if not pcall(require, "Comment") then
 end
 
 local comment = require("Comment")
+local map = vim.keymap.set
 
 comment.setup({
   pre_hook = function(ctx)
@@ -21,3 +22,10 @@ comment.setup({
     }
   end,
 })
+
+-- Universal comments with <C-/> (written as <C-_> to work in terminal)
+map("n", "<C-/>", require("Comment.api").toggle_current_linewise)
+map("x", "<C-/>", "<Cmd>norm gbgv<CR>")
+map("n", "<C-_>", require("Comment.api").toggle_current_linewise)
+map("x", "<C-_>", "<Cmd>norm gbgv<CR>")
+

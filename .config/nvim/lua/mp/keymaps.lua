@@ -1,15 +1,11 @@
-if not pcall(require, "telescope") then
-  return
-end
-
 -- Keymaps Configurations
-local fns = require("mp.functions")
 local map = vim.keymap.set
 local g = vim.g
 
 -- set Space to Leader
 map("n", "<Space>", "<Nop>", { silent = true })
 g.mapleader = " "
+
 -- safe write
 map("n", "<M-w>", ":write<CR>", { silent = true })
 map("i", "<M-w>", "<Esc>:write<CR>", { silent = true })
@@ -40,19 +36,8 @@ map("n", ">", ">>", { silent = true })
 map("n", "<", "<<", { silent = true })
 map("x", ">", ">gv", { silent = true })
 map("x", "<", "<gv", { silent = true })
-
--- Keybinds for editing init files
-map("n", "<Leader>fd", require("plugins.telescope").search_dotfiles, { silent = true })
--- telescope fuzzy find stuff
-map("n", "<Leader>ff", require("telescope.builtin").find_files, { silent = true })
-map("n", "<Leader>fw", require("plugins.telescope").search_workspace, { silent = true })
-map("n", "<Leader>fg", require("telescope.builtin").live_grep, { silent = true })
-map("n", "<Leader>fh", require("telescope.builtin").help_tags, { silent = true })
--- Open file manager
-map("n", "<leader>dd", fns.file_explorer)
-map("n", "<leader>da", function() fns.file_explorer(vim.fn.getcwd()) end)
--- Universal comments with <C-/> (written as <C-_> to work in terminal)
-map("n", "<C-/>", require("Comment.api").toggle_current_linewise)
-map("x", "<C-/>", "<Cmd>norm gbgv<CR>")
-map("n", "<C-_>", require("Comment.api").toggle_current_linewise)
-map("x", "<C-_>", "<Cmd>norm gbgv<CR>")
+-- Moving lines and preserving indentation
+map('n', '<C-j>', ":move .+1<CR>==")
+map('n', '<C-k>', ":move .-2<CR>==")
+map('v', '<C-j>', ":move '>+1<CR>gv=gv")
+map('v', '<C-k>', ":move '<-2<CR>gv=gv")
