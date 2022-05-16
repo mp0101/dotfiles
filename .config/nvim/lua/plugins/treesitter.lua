@@ -7,9 +7,11 @@ local TSConfigs = require("nvim-treesitter.configs")
 TSConfigs.setup({
   ensure_installed = {
     "bash", "c", "cpp",
-    "css", "html", "javascript", "typescript", "json",
-    "go", "gomod", "gowork",
+    "css", "scss", "html", "javascript", "typescript", "tsx", "json", "markdown",
+    "perl", "php", "http",
+    "go", "gomod", "gowork", "ruby", "rust",
     "lua", "vim", "devicetree",
+    "todotxt", "latex", "yaml",
   },
   sync_install = false,
     context_commentstring = {
@@ -18,6 +20,8 @@ TSConfigs.setup({
     },
     highlight = {
         enable = true,
+    disable = { "latex" },
+    additional_vim_regex_highlighting = { "latex" },
     },
     indent = {
       enable = true,
