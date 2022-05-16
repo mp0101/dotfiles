@@ -12,9 +12,16 @@ packer.startup({
     use("windwp/nvim-autopairs")
     use("numToStr/Comment.nvim")
     use("feline-nvim/feline.nvim")
+    use("akinsho/bufferline.nvim")
+    use("MunifTanjim/nui.nvim")
+    use("VonHeikemen/fine-cmdline.nvim")
+    use("VonHeikemen/searchbox.nvim")
+    use("rcarriga/nvim-notify")
+    use("nvim-lua/popup.nvim")
 
     use("nvim-telescope/telescope.nvim")
     use({"nvim-telescope/telescope-fzf-native.nvim", run = "make"})
+
     use("tamago324/lir.nvim")
     use("tamago324/lir-git-status.nvim")
 

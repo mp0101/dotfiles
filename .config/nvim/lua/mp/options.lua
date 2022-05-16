@@ -36,10 +36,12 @@ set.expandtab = true
 set.smarttab = true
 
 set.incsearch = true
-set.hlsearch = true
+set.hlsearch = false
 set.smartcase = true
 set.ignorecase = true
-set.scrolloff = 10
+
+set.scrolloff = 2
+set.sidescrolloff = 5
 
 set.pumheight = 10
 set.completeopt = {'menu', 'menuone', 'noselect'}
