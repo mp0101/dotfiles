@@ -1,4 +1,4 @@
-if not pcall(require, "indent-blankline") then
+if not pcall(require, "indent_blankline") then
   return
 end
 
@@ -8,7 +8,9 @@ opt.list = true
 opt.listchars:append("eol:↲")
 opt.listchars:append("trail:•")
 
-require("indent_blankline").setup({
+local blankline = require("indent_blankline")
+
+blankline.setup({
   show_end_of_line = true,
   show_current_context = true,
 })

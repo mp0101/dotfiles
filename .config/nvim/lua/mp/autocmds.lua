@@ -42,6 +42,7 @@ local setCursorLine = function(event, value, pattern)
 end
 setCursorLine("WinLeave", false)
 setCursorLine("WinEnter", true)
+setCursorLine("FileType", false, "lspinfo")
 setCursorLine("FileType", false, "TelescopePrompt")
 
 -- Save/restore code folds
@@ -81,4 +82,22 @@ autocmd("BufReadPost", {
     vim.api.nvim_buf_delete(0, {})
   end,
   group = openPDF,
+})
+
+local packerUserSync = augroup("packerUserSync", {})
+autocmd("BufWritePost", {
+  pattern = {
+    "packer.lua",
+  },
+  command = "source <afile> | PackerSync",
+  group = packerUserSync,
+})
+
+local packerUserCompile = augroup("packerUserCompile", {})
+autocmd("BufWritePost", {
+  pattern = {
+    "packer.lua",
+  },
+  command = "source <afile> | PackerCompile",
+  group = packerUserCompile,
 })

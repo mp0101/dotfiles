@@ -41,6 +41,7 @@ set.smartcase = true
 set.ignorecase = true
 set.scrolloff = 10
 
+set.pumheight = 10
 set.completeopt = {'menu', 'menuone', 'noselect'}
 set.clipboard = "unnamedplus"
 

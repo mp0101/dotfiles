@@ -1,13 +1,16 @@
-if not pcall(require, "onedark") then
+if not pcall(require, "onedark", "monokai", "rose_pine") then
   return
 end
 
+local onedark = require("onedark")
+
 -- OneDark styles: dark, darker, cool, deep, warm, warmer, light
-require('onedark').setup {
+onedark.setup {
   style = 'darker',
   colors = { fg = '#b2bbcc' }, --default: #a0a8b7
 }
-require('onedark').load()
+
+onedark.load()
 
 -- statusline color schemes:
 -- import with: require('colors').colorscheme_name
