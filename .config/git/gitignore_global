@@ -1,6 +1,7 @@
 Desktop
 Downloads
 Pictures
+Mail
 Music
 Workspaces
 
@@ -11,6 +12,7 @@ Workspaces
 .gnupg
 
 .d*
+.v*
 .x*
 
 .I*
