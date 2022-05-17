@@ -1,0 +1,5 @@
+require"mp.options"
+require"mp.keymaps"
+require"mp.colors"
+require"mp.disabled"
+require"mp.autocmds"

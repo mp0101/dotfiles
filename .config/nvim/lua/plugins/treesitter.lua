@@ -1,53 +1,42 @@
-if not pcall(require,"nvim-treesitter") then
-  return
-end
+local ts = require('nvim-treesitter.configs')
 
-local TSConfigs = require("nvim-treesitter.configs")
-
-TSConfigs.setup({
-  ensure_installed = {
-    "bash", "c", "cpp",
-    "css", "scss", "html", "javascript", "typescript", "tsx", "json", "markdown",
-    "perl", "php", "http",
-    "go", "gomod", "gowork", "ruby", "rust",
-    "lua", "vim", "devicetree",
-    "todotxt", "latex", "yaml",
+ts.setup({
+  highlight = {
+    enable = true,
   },
-  sync_install = false,
-    context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-    },
-    highlight = {
-        enable = true,
-    disable = { "latex" },
-    additional_vim_regex_highlighting = { "latex" },
-    },
-    indent = {
+  textobjects = {
+    select = {
       enable = true,
+      lookahead = true,
+      keymaps = {
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+        ['ia'] = '@parameter.inner',
+      }
     },
-    playground = {
-        enable = true,
-    },
-    textobjects = {
-        select = {
-            enable = true,
-            keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["al"] = "@loop.outer",
-                ["il"] = "@loop.inner",
-            },
-        },
-        swap = {
-            enable = true,
-            swap_next = {
-                ["<Leader>;"] = "@swappable",
-            },
-            swap_previous = {
-                ["<Leader>,"] = "@swappable",
-            },
-        },
-    },
+    swap = {
+      enable = true,
+      swap_previous = {
+        ['[a'] = '@parameter.inner',
+      },
+      swap_next = {
+        [']a'] = '@parameter.inner',
+      },
+    }
+  },
+  ensure_installed = {
+    'javascript',
+    'typescript',
+    'tsx',
+    'php',
+    'lua',
+    'python',
+    'markdown',
+    'css',
+    'json',
+    'vim'
+  },
 })
 

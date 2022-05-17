@@ -43,7 +43,8 @@ set.ignorecase = true
 set.scrolloff = 2
 set.sidescrolloff = 5
 
-set.pumheight = 10
-set.completeopt = {'menu', 'menuone', 'noselect'}
-set.clipboard = "unnamedplus"
+set.joinspaces = false
 
+set.pumheight = 10
+set.completeopt = { 'menu', 'menuone', 'noselect' }
+set.clipboard = "unnamedplus"

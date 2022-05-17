@@ -1,10 +1,5 @@
-local status_ok, feline = pcall(require, 'feline')
-if not status_ok then
-  return
-end
-
--- Set colorscheme (from core/colors.lua/colorscheme_name)
-local colors = require('mp.colors').onedark_dark
+local colors = require("conf.colors").colors
+local feline = require("feline")
 
 local vi_mode_colors = {
   NORMAL = colors.cyan,
@@ -33,7 +28,7 @@ local lsp_get_diag = function(str)
   return (count > 0) and ' '..count..' ' or ''
 end
 
-local separator = '|'
+local separator = ""
 
 -- My components
 local comps = {
@@ -53,8 +48,8 @@ local comps = {
         }
         return set_color
       end,
-      left_sep = ' ',
-      right_sep = ' ',
+      left_sep = ' ',
+      right_sep = ' ',
     }
   },
   -- Parse file information:
@@ -64,11 +59,17 @@ local comps = {
       provider = {
         name = 'file_info',
         opts = {
-          type = 'relative',
-          file_modified_icon = '',
+          type = 'unique',
+          file_modified_icon = '[+]',
         }
       },
-      hl = { fg = colors.cyan },
+      hl = {
+        bg = colors.cyan,
+        fg = colors.bg,
+        style = 'bold',
+      },
+      left_sep = ' ',
+      right_sep = ' ',
       icon = '',
     },
     -- File type
@@ -82,10 +83,10 @@ local comps = {
         end
         return ' ' .. icon .. ' ' .. type
       end,
-      hl = { fg = colors.fg },
+      hl = { fg = colors.cyan },
       left_sep = {
         str = ' ' .. separator,
-        hl = { fg = colors.fg },
+        hl = { fg = colors.cyan },
       },
       righ_sep = ' ',
     },
@@ -103,21 +104,21 @@ local comps = {
         end
         return icon .. os
       end,
-      hl = { fg = colors.fg },
+      hl = { fg = colors.cyan },
       left_sep = {
         str = ' ' .. separator,
-        hl = { fg = colors.fg },
+        hl = { fg = colors.cyan },
       },
       right_sep = {
         str = ' ' .. separator,
-        hl = { fg = colors.fg },
+        hl = { fg = colors.cyan },
       },
     },
     -- Line-column
     position = {
       provider = { name = 'position' },
       hl = {
-        fg = colors.fg,
+        fg = colors.cyan,
         style = 'bold',
       },
       left_sep = ' ',
@@ -136,7 +137,9 @@ local comps = {
     -- Simple scrollbar
     scroll_bar = {
       provider = { name = 'scroll_bar' },
-      hl = { fg = colors.fg },
+      hl = {
+        fg = colors.fg,
+      },
       left_sep = ' ',
       right_sep = ' ',
     },
@@ -182,8 +185,10 @@ local comps = {
     branch = {
       provider = 'git_branch',
       icon = ' ',
-      hl = { fg = colors.pink },
-      left_sep = '  ',
+      hl = {
+        fg = colors.pink,
+      },
+      left_sep = ' ',
     },
     add = {
       provider = 'git_diff_added',
@@ -206,8 +211,6 @@ local comps = {
   }
 }
 
--- Get active/inactive components
--- See: https://github.com/famiu/feline.nvim/blob/master/USAGE.md#components
 local components = {
   active = {},
   inactive = {},
@@ -248,9 +251,6 @@ feline.setup {
   vi_mode_colors = vi_mode_colors,
   force_inactive = {
     filetypes = {
-      '^NvimTree$',
-      '^packer$',
-      '^vista$',
       '^help$',
     },
     buftypes = {

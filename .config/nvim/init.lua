@@ -1,7 +1,14 @@
--- Install plugins if necessary
-if require("plug")() then return end
+-- Basic editor options
+require('conf.basic')
 
--- User Options
-require("mp")
--- Configs Plugins
-require("plugins")
+-- User defined commands
+require('conf.commands')
+
+-- Install plugins if necessary
+if require('plugins.install') then return end
+
+-- Plugin management and config
+require('conf.plugins')
+
+-- Keybindings
+require('conf.keymaps')

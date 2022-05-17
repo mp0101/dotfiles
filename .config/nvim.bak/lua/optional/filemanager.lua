@@ -38,5 +38,5 @@ fm.setup({
 })
 
 -- Open file manager
-map("n", "<leader>dd", fns.file_explorer)
-map("n", "<leader>da", function() fns.file_explorer(vim.fn.getcwd()) end)
+map("n", "<Leader>fm", fns.file_explorer)
+map("n", "<Leader>fa", function() fns.file_explorer(vim.fn.getcwd()) end)

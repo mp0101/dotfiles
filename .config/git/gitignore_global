@@ -1,3 +1,4 @@
+Backup
 Desktop
 Downloads
 Pictures
@@ -14,7 +15,7 @@ Workspaces
 .d*
 .v*
 .x*
-
+.w*
 .I*
 .X*
 
@@ -27,6 +28,7 @@ Workspaces
 .config/mpd/*.sql
 .config/ncmpcpp/*.log
 .config/nvim/plugin/*
+.config/nvim/.gitignore
 
 .config/autostart
 .config/chromium

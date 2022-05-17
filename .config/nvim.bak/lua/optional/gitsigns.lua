@@ -3,4 +3,4 @@ if not pcall(require,"gitsigns") then
 end
 
 local gitsigns = require("gitsigns")
-gitsigns.setup()
+gitsigns.setup({})
