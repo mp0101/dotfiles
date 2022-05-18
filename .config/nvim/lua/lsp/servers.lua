@@ -3,10 +3,16 @@ local server = {}
 server.sumneko_lua = {
   settings = {
     Lua = {
-      telemetry = {enable = false}
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_size = "2",
+          quote_style = "double",
+        },
+      },
+      telemetry = { enable = false }
     }
   }
 }
 
 return server
-

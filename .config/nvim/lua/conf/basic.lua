@@ -32,7 +32,7 @@ set.incsearch = true
 set.cursorline = true
 
 -- Enable syntax highlight
-vim.cmd('syntax enable')
+vim.cmd("syntax enable")
 
 set.cmdheight = 1
 set.showmode = false
@@ -42,14 +42,14 @@ set.showcmd = true
 set.number = true
 
 -- Always display signcolumn (for diagnostic related stuff)
-set.signcolumn = 'yes:1'
-set.colorcolumn = '81'
+set.signcolumn = "yes:1"
+set.colorcolumn = "81"
 
 -- When opening a window put it right or below the current one
 set.splitright = true
 set.splitbelow = true
 
-if vim.fn.has('termguicolors') == 1 then
+if vim.fn.has("termguicolors") == 1 then
   set.termguicolors = true
 end
 
@@ -63,22 +63,26 @@ set.softtabstop = 2
 set.expandtab = true
 
 -- Enable mouse support
-set.mouse = 'a'
+set.mouse = "a"
+
+set.clipboard:append("unnamedplus")
 
 -- Look for a tag file in the git folder
 -- I shouldn't have to use `cwd` but here we are
-set.tags:prepend(f('%s/.git/tags', cwd))
+set.tags:prepend(f("%s/.git/tags", cwd))
 
+set.lazyredraw = true
+set.updatetime = 360
 -- Insert mode completion setting
-set.completeopt = {'menu', 'menuone', 'noselect'}
+set.completeopt = { "menu", "menuone", "noselect" }
+set.pumheight = 7
+set.pumblend = 0
 
--- Clipboard
-set.clipboard = 'unnamedplus'
-
+set.shortmess:append("c")
 -- Apply theme
-local theme = pcall(require, 'conf.colors')
-if theme then vim.cmd('colorscheme nebulous') end
+local theme = pcall(require, "conf.colors")
+if theme then vim.cmd("colorscheme nebulous") end
 
 -- Set grep default grep command with ripgrep
-set.grepprg = 'rg --vimgrep --follow'
-set.errorformat:append('%f:%l:%c%p%m')
+set.grepprg = "rg --vimgrep --follow"
+set.errorformat:append("%f:%l:%c%p%m")

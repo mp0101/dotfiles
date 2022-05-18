@@ -4,19 +4,20 @@ M.setup = function(opts)
   opts = opts or {}
 
   -- Setup autocomplete for nvim's lua api
-  require('cmp').setup.filetype('lua', {
+  require("cmp").setup.filetype("lua", {
     sources = {
-      {name = 'path'},
-      {name = 'nvim_lua'},
-      {name = 'nvim_lsp', keyword_length = 3},
-      {name = 'buffer', keyword_length = 3},
-      {name = 'luasnip', keyword_length = 2},
+      { name = "path" },
+      { name = "nvim_lua" },
+      { name = "nvim_lsp", keyword_length = 3 },
+      { name = "buffer", keyword_length = 3 },
+      { name = "luasnip", keyword_length = 2 },
+      { name = "treesitter" },
     }
   })
 
-  require('lsp')
+  require("lsp")
 
-  local lsp = require('lsp-zero')
+  local lsp = require("lsp-zero")
 
   local server_opts = lsp.defaults.nvim_workspace()
 
@@ -24,8 +25,7 @@ M.setup = function(opts)
     server_opts.settings.Lua.workspace.library = opts.library
   end
 
-  lsp.use('sumneko_lua', server_opts)
+  lsp.use("sumneko_lua", server_opts)
 end
 
 return M
-

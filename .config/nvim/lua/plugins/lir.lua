@@ -28,7 +28,7 @@ end
 lir.setup({
   on_init = on_init,
   devicons_enable = true,
-  hide_cursor = true,
+  hide_cursor = false,
   mappings = {
     ['l']  = actions.edit,
     ['es'] = actions.split,
@@ -39,10 +39,10 @@ lir.setup({
     ['q']  = actions.quit,
 
     ['.'] = actions.toggle_show_hidden,
-    ['i'] = actions.newfile,
-    ['o'] = actions.mkdir,
-    ['r'] = actions.rename,
-    ['d'] = actions.delete,
+    ['N'] = actions.newfile,
+    ['K'] = actions.mkdir,
+    ['R'] = actions.rename,
+    ['D'] = actions.delete,
     ['Y'] = actions.yank_path,
 
     ['<Tab>'] = marks.toggle_mark,
