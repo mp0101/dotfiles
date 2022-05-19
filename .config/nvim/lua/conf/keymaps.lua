@@ -7,6 +7,8 @@ local autocmd = vim.api.nvim_create_autocmd
 local bind = vim.keymap.set
 local remap = { remap = true }
 
+-- Ensure space not used
+bind("n", "<Space>", "<Nop>")
 -- Leader
 vim.g.mapleader = " "
 
@@ -14,43 +16,27 @@ vim.g.mapleader = " "
 -- ==                             KEY MAPPINGS                             == --
 -- ========================================================================== --
 
--- Project Settings
-bind("n", "<Leader>wl", ":ProjectSettingsLoad<CR>")
-bind("n", "<Leader>we", ":ProjectSettingsEdit<CR>")
-bind("n", "<Leader>ws", ":ProjectSettingsStatus<CR>")
-bind("n", "<Leader>wr", ":ProjectSettingsRegister<CR>")
-
--- Minpac Shortcut
-bind("n", "<Leader>pu", ":PackUpdate<CR>")
-bind("n", "<Leader>ps", ":PackStatus<CR>")
-bind("n", "<Leader>pc", ":PackClean<CR>")
-
--- Fast to Esc
-bind("i", "jk", "<Esc>")
-bind("i", "JK", "<Esc>")
-bind("v", "KJ", "<Esc>")
-bind("v", "kj", "<Esc>")
-
 -- Disable ArrowKeys
-bind({ "i", "n", "v" }, "<Up>", "<Nop>")
-bind({ "i", "n", "v" }, "<Down>", "<Nop>")
-bind({ "i", "n", "v" }, "<Left>", "<Nop>")
-bind({ "i", "n", "v" }, "<Right>", "<Nop>")
+bind({"n", "i", "x", "v"}, "<Up>", "<Nop>")
+bind({"n", "i", "x", "v"}, "<Down>", "<Nop>")
+bind({"n", "i", "x", "v"}, "<Right>", "<Nop>")
+bind({"n", "i", "x", "v"}, "<Left>", "<Nop>")
 
 -- Enter commands
+bind("n", "<CR>", "<Nop>")
 bind("n", "<CR>", ":FineCmdline<CR>")
 
 -- Select all text in current buffer
 bind("n", "<C-a>", ":keepjumps normal! ggVG<CR>")
 
 -- Go to matching pair
-bind({ "n", "x" }, "<Leader>e", "%", remap)
+bind({ "n", "x" }, "<Tab>", "%", remap)
 
 -- Go to first character in line
-bind("", "H", "^")
+bind("", "H", "^", remap)
 
 -- Go to last character in line
-bind("", "L", "g_")
+bind("", "L", "g_", remap)
 
 -- Scroll half page and center
 bind("", "<C-u>", "<C-u>M")
@@ -84,22 +70,16 @@ bind("x", "X", '"_c')
 -- ========================================================================== --
 
 -- Moving lines and preserving indentation
-bind("n", "<M-j>", ":move .+1<CR>==")
-bind("n", "<M-k>", ":move .-2<CR>==")
-bind("v", "<M-j>", ":move '>+1<CR>gv=gv")
-bind("v", "<M-k>", ":move '<-2<CR>gv=gv")
+bind("n", "<C-j>", ":move .+1<CR>==")
+bind("n", "<C-k>", ":move .-2<CR>==")
+bind("v", "<C-j>", ":move '>+1<CR>gv=gv")
+bind("v", "<C-k>", ":move '<-2<CR>gv=gv")
 
 -- Write file
 bind("n", "<M-w>", ":write<CR>")
-bind("i", "<M-w>", "<Esc>:write<CR>")
-
--- Source file
-bind("i", "<M-r>", "<Esc>:so %<CR>")
-bind("n", "<M-r>", ":so %<CR>")
 
 -- Safe quit
 bind("n", "<M-q>", ":quitall<CR>")
-bind("i", "<M-q>", "<Esc>:quitall<CR>")
 
 -- Force quit
 bind("n", "<M-Q>", ":quitall!<CR>")
@@ -126,6 +106,12 @@ bind("n", "<Leader><space>", ":echo ''<CR>")
 
 -- Switch to the directory of the open buffer
 bind("n", "<Leader>cd", ":lcd %:p:h<CR>:pwd<CR>")
+
+-- Universal comments with <C-/> (written as <C-_> to work in terminal)
+bind("n", "<C-/>", require("Comment.api").toggle_current_linewise)
+bind("x", "<C-/>", "<Cmd>norm gbgv<CR>")
+bind("n", "<C-_>", require("Comment.api").toggle_current_linewise)
+bind("x", "<C-_>", "<Cmd>norm gbgv<CR>")
 
 -- ========================================================================== --
 -- ==                           TOGGLE ELEMENTS                            == --
@@ -174,15 +160,10 @@ bind("n", "<Leader>fh", ":Telescope oldfiles<CR>")
 -- Search in active buffers list
 bind("n", "<Leader>bb", ":Telescope buffers<CR>")
 bind("n", "<Leader>B", ":Telescope buffers only_cwd=true<CR>")
-bind("n", "<C-Right>", ":BufferLineCycleNext<CR>")
-bind("n", "<C-Left>", ":BufferLineCyclePrev<CR>")
 
 -- Put selected text in register '/'
 bind("v", "<Leader>y", ":<C-u>GetSelection<CR>gv")
 bind("v", "<Leader>Y", ":<C-u>GetSelection<CR>:set hlsearch<CR>")
-
--- Turn off hlsearch
-bind("n", "<Leader>hl", ":nohl<CR>")
 
 -- Nice buffer local search
 bind("n", "<leader>s", ":SearchBoxIncSearch<CR>")
@@ -216,7 +197,7 @@ autocmd("User", {
     bind("n", "gd", lsp.definition, opts)
     bind("n", "gD", lsp.declaration, opts)
     bind("n", "gi", lsp.implementation, opts)
-    bind("n", "gt", lsp.type_definition, opts)
+    bind("n", "go", lsp.type_definition, opts)
     bind("n", "gr", lsp.references, opts)
     bind("n", "gs", lsp.signature_help, opts)
     bind("n", "<F2>", lsp.rename, opts)

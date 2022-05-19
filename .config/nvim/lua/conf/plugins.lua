@@ -31,28 +31,8 @@ plug.init({
     end
   },
 
-  -- ColorScheme
-  { "Yagua/nebulous.nvim", type = "start" },
-
-  -- Statusline
-  {
-    "feline-nvim/feline.nvim",
-    type = "start",
-    config = use("plugins.feline")
-  },
-
-  -- Bufferline
-  {
-    "akinsho/bufferline.nvim",
-    type = "start",
-    config = use("plugins.bufferline")
-  },
-
-  -- Indent-Blankline
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = use("plugins.indent-blankline")
-  },
+  -- Theme
+  { "rebelot/kanagawa.nvim", type = "start" },
 
   -- Distraction free mode
   { "folke/zen-mode.nvim", config = use("plugins.zen-mode") },
@@ -63,14 +43,6 @@ plug.init({
     type = "start",
     config = use("plugins.lir")
   },
-  { "tamago324/lir-git-status.nvim" },
-
-  -- Icons
-  { "kyazdani42/nvim-web-devicons", type = "start" },
-  { "yamatsum/nvim-nonicons", type = start },
-
-  -- Better clipboard support
-  { "christoomey/vim-system-copy" },
 
   -- Editor config
   { "editorconfig/editorconfig-vim" },
@@ -79,22 +51,16 @@ plug.init({
   { "hrsh7th/nvim-cmp", config = use("plugins.nvim-cmp") },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
-  { "hrsh7th/cmp-cmdline" },
+  { "saadparwaiz1/cmp_luasnip" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-nvim-lua" },
-  { "hrsh7th/cmp-nvim-lsp-signature-help" },
-  { "hrsh7th/cmp-nvim-lsp-document-symbol" },
-  { "ray-x/cmp-treesitter" },
-  { "saadparwaiz1/cmp_luasnip" },
-
 
   -- Snippets
   { "VonHeikemen/the-good-snippets", type = "start" },
   { "mattn/emmet-vim", type = "opt" },
   { "L3MON4D3/LuaSnip", config = use("plugins.luasnip") },
   { "windwp/nvim-autopairs", config = setup.autopairs },
-  -- { "b3nj5m1n/kommentary", config = setup.kommentary },
-  { "numToStr/Comment.nvim", config = use("plugins.comment") },
+  { "numToStr/Comment.nvim", type = "start", config = setup.comment },
 
   -- Language support
   { "othree/html5.vim", type = "start" },
@@ -106,20 +72,18 @@ plug.init({
     run = function() pcall(vim.cmd, "TSUpdate") end,
     config = use("plugins.treesitter")
   },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "nvim-treesitter/nvim-treesitter-refactor" },
-  { "nvim-treesitter/nvim-treesitter-context" },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    frozen = true,
+  },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
-  { "theHamsta/nvim-treesitter-pairs" },
   { "p00f/nvim-ts-rainbow" },
 
   -- LSP support
   { "neovim/nvim-lspconfig", type = "opt" },
-  { "onsails/lspkind.nvim", type = "start" },
   { "williamboman/nvim-lsp-installer", type = "opt" },
   { "VonHeikemen/lsp-zero.nvim", type = "opt" },
   { "j-hui/fidget.nvim", type = "opt" },
-  -- { "folke/trouble.nvim", config = use("plugins.trouble") },
 
   -- Enhance quickfix list
   { "romainl/vim-qf" },
@@ -140,17 +104,13 @@ plug.init({
   },
   {
     "VonHeikemen/fine-cmdline.nvim",
-    config = use("plugins.fineline")
+    config = setup.fine_cmdline
   },
   { "VonHeikemen/searchbox.nvim", config = setup.searchbox },
   { "rcarriga/nvim-notify", config = setup.nvim_notify },
 
   --  Utilities
-  { "sunjon/shade.nvim", config = use("plugins.shade") },
-  { "karb94/neoscroll.nvim", config = use("plugins.neoscroll") },
   { "petertriho/nvim-scrollbar", config = use("plugins.scrollbar") },
-  { "yamatsum/nvim-cursorline", config = use("plugins.cursorline") },
-  { "AckslD/nvim-trevJ.lua", type = "start" },
   { "moll/vim-bbye" },
   { "wellle/targets.vim" },
   { "tpope/vim-surround" },

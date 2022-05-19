@@ -1,12 +1,19 @@
+local env = require("conf.env")
 local cwd = vim.fn.getcwd()
 local f = string.format
 local autocmd = vim.api.nvim_create_autocmd
 
 local set = vim.opt
 
--- Disable swap & backup files
-set.swapfile = false
-set.backup = false
+if env.tempdir then
+  -- Temp files directory
+  set.backupdir = env.tempdir
+  set.directory = env.tempdir
+else
+  -- Don't use temp files
+  set.swapfile = false
+  set.backup = false
+end
 
 -- Ignore the case when the search pattern is all lowercase
 set.smartcase = true
@@ -22,11 +29,14 @@ set.wrap = false
 set.scrolloff = 2
 set.sidescrolloff = 5
 
--- Highlight search results
-set.hlsearch = true
+-- Don't highlight search results
+set.hlsearch = false
 
 -- Enable incremental search
 set.incsearch = true
+
+-- Enable numberline
+set.number = true
 
 -- Enable cursorline
 set.cursorline = true
@@ -34,24 +44,24 @@ set.cursorline = true
 -- Enable syntax highlight
 vim.cmd("syntax enable")
 
-set.cmdheight = 1
-set.showmode = false
-set.showcmd = true
-
--- Show numberline
-set.number = true
-
 -- Always display signcolumn (for diagnostic related stuff)
-set.signcolumn = "yes:1"
-set.colorcolumn = "81"
+set.signcolumn = "yes"
 
 -- When opening a window put it right or below the current one
 set.splitright = true
 set.splitbelow = true
 
+-- Background to dark
+set.background = "dark"
+
+-- Enable 256-Colors
 if vim.fn.has("termguicolors") == 1 then
   set.termguicolors = true
 end
+
+-- Theme
+local theme = pcall(require, "kanagawa")
+if theme then vim.cmd("colorscheme kanagawa") end
 
 -- Preserve state (undo, marks, etc) in non visible buffers
 set.hidden = true
@@ -65,24 +75,23 @@ set.expandtab = true
 -- Enable mouse support
 set.mouse = "a"
 
-set.clipboard:append("unnamedplus")
-
 -- Look for a tag file in the git folder
 -- I shouldn't have to use `cwd` but here we are
 set.tags:prepend(f("%s/.git/tags", cwd))
 
-set.lazyredraw = true
-set.updatetime = 360
+-- Clipboard using xclip
+set.clipboard:append("unnamedplus")
+
 -- Insert mode completion setting
 set.completeopt = { "menu", "menuone", "noselect" }
-set.pumheight = 7
-set.pumblend = 0
-
-set.shortmess:append("c")
--- Apply theme
-local theme = pcall(require, "conf.colors")
-if theme then vim.cmd("colorscheme nebulous") end
 
 -- Set grep default grep command with ripgrep
 set.grepprg = "rg --vimgrep --follow"
 set.errorformat:append("%f:%l:%c%p%m")
+
+-- Status line
+set.statusline = "%=%r%m %l:%c %p%% %y "
+
+if env.preserve_beam_cursor then
+  autocmd("VimLeave", { command = "set guicursor=a:ver25" })
+end
