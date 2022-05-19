@@ -25,12 +25,17 @@ set.autowrite = true
 -- Disable line wrapping
 set.wrap = false
 
+-- Enable Fold
+set.foldmethod = "marker"
+set.foldmarker = "[[[,]]]"
+set.foldenable = true
+
 -- Keep lines below cursor when scrolling
 set.scrolloff = 2
 set.sidescrolloff = 5
 
--- Don't highlight search results
-set.hlsearch = false
+-- Enable highlight search results
+set.hlsearch = true
 
 -- Enable incremental search
 set.incsearch = true
@@ -40,6 +45,9 @@ set.number = true
 
 -- Enable cursorline
 set.cursorline = true
+
+-- Enable colorcolumn
+set.colorcolumn = "81"
 
 -- Enable syntax highlight
 vim.cmd("syntax enable")
@@ -54,7 +62,7 @@ set.splitbelow = true
 -- Background to dark
 set.background = "dark"
 
--- Enable 256-Colors
+-- Enable 256-colors
 if vim.fn.has("termguicolors") == 1 then
   set.termguicolors = true
 end
@@ -88,9 +96,6 @@ set.completeopt = { "menu", "menuone", "noselect" }
 -- Set grep default grep command with ripgrep
 set.grepprg = "rg --vimgrep --follow"
 set.errorformat:append("%f:%l:%c%p%m")
-
--- Status line
-set.statusline = "%=%r%m %l:%c %p%% %y "
 
 if env.preserve_beam_cursor then
   autocmd("VimLeave", { command = "set guicursor=a:ver25" })
