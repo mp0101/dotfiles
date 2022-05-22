@@ -4,15 +4,17 @@ local plug = require("plug")
 
 local use = function(mod) return function() require(mod) end end
 
--- ========================================================================== --
--- ==                               PLUGINS                                == --
--- ========================================================================== --
-
+-- [[[ Plugins Manager
 plug.init({
-  -- Plugin manager
   { "k-takata/minpac", type = "opt" },
 
-  -- Fuzzy finder
+  -- [[[ Fuzzy finder
+
+  { "tami5/sqlite.lua" },
+  { "nvim-telescope/telescope-smart-history.nvim" },
+  { "nvim-telescope/telescope-frecency.nvim" },
+  { "nvim-telescope/telescope-media-files.nvim" },
+  { "nvim-telescope/telescope-fzf-writer.nvim" },
   {
     "nvim-telescope/telescope.nvim",
     config = use("plugins.telescope")
@@ -31,38 +33,26 @@ plug.init({
     end
   },
 
-  -- Theme
-  { "rebelot/kanagawa.nvim", type = "start" },
+  -- ]]]
+  -- [[[ Distraction free mode
 
-  -- Distraction free mode
   { "folke/zen-mode.nvim", config = use("plugins.zen-mode") },
 
-  -- File explorer
+  -- ]]]
+  -- [[[ File explorer
+
   {
     "tamago324/lir.nvim",
     type = "start",
     config = use("plugins.lir")
   },
 
-  -- Editor config
+  -- ]]]
+  -- [[[ Editor config
+
   { "editorconfig/editorconfig-vim" },
-
-  -- Autocompletion
-  { "hrsh7th/nvim-cmp", config = use("plugins.nvim-cmp") },
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-path" },
-  { "saadparwaiz1/cmp_luasnip" },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-nvim-lua" },
-
-  -- Snippets
-  { "VonHeikemen/the-good-snippets", type = "start" },
-  { "mattn/emmet-vim", type = "opt" },
-  { "L3MON4D3/LuaSnip", config = use("plugins.luasnip") },
-  { "windwp/nvim-autopairs", config = setup.autopairs },
-  { "numToStr/Comment.nvim", type = "start", config = setup.comment },
-
-  -- Language support
+  -- ]]]
+  -- [[[ Language support
   { "othree/html5.vim", type = "start" },
   { "pangloss/vim-javascript", type = "start" },
   { "lumiliet/vim-twig", type = "start" },
@@ -79,38 +69,72 @@ plug.init({
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "p00f/nvim-ts-rainbow" },
 
-  -- LSP support
+  -- ]]]
+  -- [[[ Autocompletion
+
+  { "hrsh7th/nvim-cmp", config = use("plugins.nvim-cmp") },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-nvim-lua" },
+  { "saadparwaiz1/cmp_luasnip" },
+
+  -- ]]]
+  -- [[[ Snippets
+
+  { "VonHeikemen/the-good-snippets", type = "start" },
+  { "mattn/emmet-vim", type = "opt" },
+  { "L3MON4D3/LuaSnip", config = use("plugins.luasnip") },
+  { "windwp/nvim-autopairs", config = setup.autopairs },
+  { "numToStr/Comment.nvim", type = "start", config = setup.comment },
+
+  -- ]]]
+  -- [[[ LSP support
+
   { "neovim/nvim-lspconfig", type = "opt" },
   { "williamboman/nvim-lsp-installer", type = "opt" },
   { "VonHeikemen/lsp-zero.nvim", type = "opt" },
   { "j-hui/fidget.nvim", type = "opt" },
 
-  -- Enhance quickfix list
+  -- ]]]
+  -- [[[ Enhance quickfix list
+
   { "romainl/vim-qf" },
   { "stefandtw/quickfix-reflector.vim" },
 
-  -- Startup screen
+  -- ]]]
+  -- [[[ Startup screen
+
   {
     "goolord/alpha-nvim",
     type = "start",
     config = use("plugins.alpha")
   },
 
-  -- UI components
+  -- ]]]
+  -- [[[ UI components
+
+  { "rebelot/kanagawa.nvim", type = "start" },
+  { "kyazdani42/nvim-web-devicons", type = "start" },
+  { "yamatsum/nvim-nonicons", type = "start", config = setup.nonicons },
+  { "VonHeikemen/searchbox.nvim", config = setup.searchbox },
+  { "rcarriga/nvim-notify", config = setup.nvim_notify },
+  {
+    "VonHeikemen/fine-cmdline.nvim",
+    config = setup.fine_cmdline
+  },
   {
     "MunifTanjim/nui.nvim",
     type = "start",
     config = use("plugins.vim-ui")
   },
-  {
-    "VonHeikemen/fine-cmdline.nvim",
-    config = setup.fine_cmdline
-  },
-  { "VonHeikemen/searchbox.nvim", config = setup.searchbox },
-  { "rcarriga/nvim-notify", config = setup.nvim_notify },
 
-  --  Utilities
+  -- ]]]
+  -- [[[ Ultilities
+
   { "petertriho/nvim-scrollbar", config = use("plugins.scrollbar") },
+  { "lukas-reineke/indent-blankline.nvim", config = use("plugins.indentline") },
+  { "antoinemadec/FixCursorHold.nvim", type = "start" },
   { "moll/vim-bbye" },
   { "wellle/targets.vim" },
   { "tpope/vim-surround" },
@@ -128,9 +152,12 @@ plug.init({
   }
 })
 
--- ========================================================================== --
--- ==                            LOCAL PLUGINS                             == --
--- ========================================================================== --
+-- ]]]
+
+-- ]]]
+-- [[[ Local Plugin
 
 -- Session manager
 require("plugins.session")
+
+-- ]]]

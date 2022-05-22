@@ -7,6 +7,7 @@ vim.g.loaded_netrwPlugin = 1
 local actions = require('lir.actions')
 local marks = require('lir.mark.actions')
 local clipboard = require('lir.clipboard.actions')
+local devicons = require('nvim-web-devicons')
 
 local on_init = function()
   local bind = vim.keymap.set
@@ -25,8 +26,17 @@ local on_init = function()
   bind('n', '<S-Tab>', 'gv<Tab>', remap)
 end
 
+devicons.set_icon({
+  lir_folder_icon = {
+    icon = "",
+    color = "#7EBAE4",
+    name = "LirFolderNode",
+  }
+})
+
 lir.setup({
   on_init = on_init,
+  devicons_enable = true,
   hide_cursor = true,
   mappings = {
     ['l']  = actions.edit,

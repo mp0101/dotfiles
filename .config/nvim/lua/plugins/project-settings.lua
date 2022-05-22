@@ -6,9 +6,9 @@ local autocmd = vim.api.nvim_create_autocmd
 
 project.set_config({
   settings = {
-    notify_unregistered = false,
-    notify_changed = false,
-    file_pattern = './vimrc.json'
+    notify_unregistered = true,
+    notify_changed = true,
+    file_pattern = './.config.json'
   },
   allow = {
     lsp = function(opts)
@@ -47,7 +47,7 @@ project.set_config({
 })
 
 autocmd('BufWritePost', {
-  pattern = 'vimrc.json',
+  pattern = '.config.json',
   group = augroup,
   command = 'ProjectSettingsRegister'
 })

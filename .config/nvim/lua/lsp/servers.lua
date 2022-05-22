@@ -11,9 +11,6 @@ server.sumneko_lua = {
           quote_style = "double",
         },
       },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
       telemetry = { enable = false }
     }
   }

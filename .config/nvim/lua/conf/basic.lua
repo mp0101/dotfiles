@@ -67,10 +67,6 @@ if vim.fn.has("termguicolors") == 1 then
   set.termguicolors = true
 end
 
--- Theme
-local theme = pcall(require, "kanagawa")
-if theme then vim.cmd("colorscheme kanagawa") end
-
 -- Preserve state (undo, marks, etc) in non visible buffers
 set.hidden = true
 

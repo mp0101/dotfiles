@@ -78,5 +78,10 @@ M.lightspeed = function()
   })
 end
 
+M.nonicons = function()
+  local icons = require("nvim-nonicons")
+  icons.get("file")
+end
+
 return M
 

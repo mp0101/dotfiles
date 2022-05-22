@@ -22,6 +22,7 @@ end
 
 -- Basic editor options
 require('conf.basic')
+require("conf.colors")
 
 -- User defined commands
 require('conf.commands')

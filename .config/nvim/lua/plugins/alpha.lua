@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup('alpha_cmds', {clear = true})
+local augroup = vim.api.nvim_create_augroup("alpha_cmds", { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
 
 local theme = {}
@@ -8,77 +8,85 @@ local action = {}
 local version = vim.version()
 
 -- Disable built-in intro message
-vim.opt.shortmess:append('I')
+vim.opt.shortmess:append("acsI")
+
+local logo = {
+  [[ _______              ____   ____(^^)        ]],
+  [[ \      \    ____  ___\   \ /   /___. _____  ]],
+  [[ /   |   \  / __ \/  _ \   Y   / |  |/     \ ]],
+  [[/    |    \/  ___(   |  \     /  |  |  Y Y  \]],
+  [[\____|____/\______\____/ \___/   |__|__|_|__/]],
+}
 
 section.header = {
-  type = 'text',
-  val = 'NEOVIM',
+  type = "text",
+  val = logo,
   opts = {
-    position = 'center',
-    hl = 'string'
+    position = "center",
+    hl = "string"
   }
 }
 
 section.footer = {
-  type = 'text',
+  type = "text",
   val = string.format(
-    'v%s.%s.%s%s',
+    "v%s.%s.%s%s",
     version.major,
     version.minor,
     version.patch,
-    version.api_prerelease and ' (Nightly)' or ''
+    version.api_prerelease and " (Nightly)" or ""
   ),
   opts = {
-    position = 'center',
-    hl = 'comment'
+    position = "center",
+    hl = "comment"
   }
 }
 action.new_file = {
-  name = 'New File',
-  display = 'n',
-  keys = 'n',
+  name = "New File",
+  display = "n",
+  keys = "n",
   fn = function()
-    vim.cmd('enew')
+    vim.cmd("enew")
   end
 }
 
 action.search_file = {
-  name = 'Find File',
-  display = 'f f',
-  keys = 'ff',
+  name = "Find File",
+  display = "f",
+  keys = "f",
   fn = function()
-    require('telescope.builtin').find_files()
+    require("telescope.builtin").find_files()
   end
 }
 
 action.recently_used = {
-  name = 'History',
-  display = 'h',
-  keys = 'h',
+  name = "History",
+  display = "H",
+  keys = "H",
   fn = function()
-    require('telescope.builtin').oldfiles()
+    require("telescope.builtin").oldfiles()
   end
 }
 
-action.explore = {
-  name = 'Explore',
-  display = 'e',
-  keys = 'e',
+action.file_manager = {
+  name = "File Manager",
+  display = "m",
+  keys = "m",
   fn = function()
-    require('conf.functions').file_explorer(vim.fn.getcwd())
+    require("conf.functions").file_explorer(vim.fn.getcwd())
   end
 }
 
 action.workspace = {
-  name = 'Load Workspace',
-  display = 'w',
-  keys = 'w',
+  name = "Load Workspace",
+  display = "w",
+  keys = "w",
   fn = function()
-    local project_settings = require('project-settings')
+    local project_settings = require("project-settings")
     project_settings.load({})
 
     if vim.g.session_name then
-      require('plugins.session').load_current(vim.g.session_name)
+      require("plugins.session").load_current(vim.g.session_name)
     else
       project_settings.check_status()
     end
@@ -86,110 +94,111 @@ action.workspace = {
 }
 
 action.help = {
-  name = 'Get Help',
-  display = 'H',
-  keys = 'H',
+  name = "Get Help",
+  display = "h",
+  keys = "h",
   fn = function()
-    require('telescope.builtin').help_tags()
+    require("telescope.builtin").help_tags()
   end
 }
 
 action.quit = {
-  name = 'Quit',
-  display = 'q',
-  keys = 'q',
+  name = "Quit",
+  display = "q",
+  keys = "q",
   fn = function()
-    vim.cmd('quitall')
+    vim.cmd("quitall")
   end
 }
 
 action.execute = {
-  name = 'Execute Command',
-  display = 'x',
-  keys = 'x',
+  name = "Execute Command",
+  display = "x",
+  keys = "x",
   fn = function()
-    require('fine-cmdline').open({})
+    require("fine-cmdline").open({})
   end
 }
 
 action.update_plugins = {
-  name = 'Update Plugins',
-  display = 'U',
-  keys = 'U',
+  name = "Update Plugins",
+  display = "U",
+  keys = "U",
   fn = function()
-    vim.cmd('PackUpdate')
+    vim.cmd("PackUpdate")
   end
 }
 
 -- Add buttons
 local button = function(args)
   return {
-    type = 'button',
-    val = '➤ ' .. args.name,
+    type = "button",
+    val = "➤ " .. args.name,
     on_press = args.fn,
     opts = {
-      position = 'center',
+      position = "center",
       shortcut = args.display,
-      cursor = 4,
-      width = 50,
-      align_shortcut = 'right',
-      hl_shortcut = 'number',
+      cursor = 2,
+      width = 40,
+      align_shortcut = "right",
+      hl_shortcut = "number",
     },
   }
 end
 
 section.buttons = {
-  type = 'group',
-  opts = {spacing = 1}
+  type = "group",
+  opts = { spacing = 1 }
 }
 
 -- very small screen
 if vim.o.lines < 18 then
   section.buttons.val = {
     button(action.search_file),
-    button(action.recently_used),
-    button(action.explore),
+    -- button(action.recently_used),
+    button(action.file_manager),
+    button(action.help),
   }
 else
   section.buttons.val = {
     button(action.new_file),
     button(action.search_file),
-    button(action.recently_used),
-    button(action.explore),
-    button(action.workspace),
+    -- button(action.recently_used),
+    -- button(action.workspace),
+    button(action.file_manager),
+    button(action.help),
     button(action.quit)
   }
 end
 
 theme.layout = {
-  {type = 'padding', val = 2},
+  { type = "padding", val = 6 },
   section.header,
-  {type = 'padding', val = 2},
+  { type = "padding", val = 2 },
   section.buttons,
-  section.footer
+  section.footer,
 }
 
 theme.opts = {}
 
-autocmd('User', {
-  pattern = 'AlphaReady',
+autocmd("User", {
+  pattern = "AlphaReady",
   group = augroup,
   callback = function()
     for _, item in pairs(action) do
       vim.keymap.set(
-        'n',
+        "n",
         item.keys,
         item.fn,
-        {silent = true, buffer = true}
+        { silent = true, buffer = true }
       )
     end
 
     if vim.g.terminal_color_background then
-      vim.cmd('highlight UserHideChar guifg=' .. vim.g.terminal_color_background)
-      vim.cmd('setlocal winhl=EndOfBuffer:UserHideChar')
+      vim.cmd("highlight UserHideChar guifg=" .. vim.g.terminal_color_background)
+      vim.cmd("setlocal winhl=EndOfBuffer:UserHideChar")
     end
   end
 })
 
-require('alpha').setup(theme)
-
+require("alpha").setup(theme)

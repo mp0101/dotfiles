@@ -94,6 +94,7 @@ autocmd("BufReadPost", {
 }) ]]
 
 -- Plugin source
+
 vim.cmd([[
   augroup pluginSource
     autocmd!
