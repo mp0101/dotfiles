@@ -1,7 +1,5 @@
-_ = vim.cmd [[packadd packer.nvim]]
-_ = vim.cmd [[packadd vimball]]
-
 local plugins = require ("packer")
+local utils = require ("packer.util")
 
 plugins.startup ({function(use)
   use ("wbthomason/packer.nvim")
@@ -26,6 +24,27 @@ plugins.startup ({function(use)
       require ("plugins.filemanager")
     end
   })
+  use ({
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require ("plugins.treesitter")
+    end
+  })
+  use ("JoosepAlviste/nvim-ts-context-commentstring")
+  use ({
+    "nvim-telescope/telescope.nvim",
+    config = function()
+      require ("plugins.telescope.setup")
+    end
+  })
+  use ("nvim-telescope/telescope-fzy-native.nvim")
 
-  end
+  end,
+  config = {
+    display = {
+      open_fn = function()
+        return utils.float({border = "rounded"})
+      end
+    }
+  }
 })
