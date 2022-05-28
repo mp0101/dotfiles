@@ -7,6 +7,9 @@ set.cursorline = true
 set.signcolumn = "yes:1"
 set.colorcolumn = "81"
 
+set.background = "dark"
+set.termguicolors = true
+
 set.tabstop = 2
 set.softtabstop = 2
 set.shiftwidth = 2

@@ -34,10 +34,11 @@ plugins.startup ({function(use)
   use ({
     "nvim-telescope/telescope.nvim",
     config = function()
-      require ("plugins.telescope.setup")
+      require ("plugins.telescope")
     end
   })
   use ("nvim-telescope/telescope-fzy-native.nvim")
+  use ("tami5/sqlite.lua")
 
   end,
   config = {

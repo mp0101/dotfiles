@@ -11,7 +11,7 @@ local actions = require ("lir.actions")
 filemanager.setup {
 
   show_hidden_files = false,
-  hide_cursor = false,
+  hide_cursor = true,
   devicons_enable = true,
 
   mappings = {
