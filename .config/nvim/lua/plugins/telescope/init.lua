@@ -4,6 +4,8 @@ end
 
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+require("plugins.telescope.pickers")
+require("plugins.telescope.mappings")
 
 telescope.setup({
   defaults = {
@@ -20,9 +22,10 @@ telescope.setup({
       }
     },
 
-    prompt_prefix = "❯ ",
+    -- prompt_prefix = "❯ ",
+    prompt_prefix = " ",
     selection_caret = "❯ ",
-    entry_prefix = "  ",
+    -- entry_prefix = "  ",
     multi_icon = "+",
     -- path_display = "truncate",
     winblend = 0,

@@ -5,8 +5,14 @@ end
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+local fns = require ("mp.functions")
 local filemanager = require ("lir")
 local actions = require ("lir.actions")
+
+local map = vim.keymap.set
+
+map('n', '<Leader>fm', fns.file_explorer)
+map('n', '<Leader>fa', function() fns.file_explorer(vim.fn.getcwd()) end)
 
 filemanager.setup {
 
