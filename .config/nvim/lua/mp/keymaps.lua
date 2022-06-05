@@ -13,5 +13,8 @@ map({"n", "x", "i", "v"}, "<Right>", "<Nop>")
 map({"n", "x", "i", "v"}, "<Left>", "<Nop>")
 
 map("n", "<M-q>", ":quit<CR>")
+
+map("i", "<M-w>", "<Esc>:write<CR>")
 map("n", "<M-w>", ":write<CR>")
+
 map("n", "<M-r>", ":so %<CR>")

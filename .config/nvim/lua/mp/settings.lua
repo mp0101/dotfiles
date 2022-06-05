@@ -1,6 +1,6 @@
 local set = vim.opt
 
-set.mouse = "a"
+set.mouse = "n"
 set.number = true
 set.relativenumber = false
 set.cursorline = true
@@ -22,6 +22,13 @@ set.hlsearch = true
 set.smartcase = true
 set.ignorecase = true
 
+set.foldmethod = "marker"
+set.foldmarker = "[[[,]]]"
+set.foldenable = true
+set.modelines = 1
+
+set.inccommand = "split"
+set.shada = { "!", "'1000", "<50", "s10", "h" }
 set.updatetime = 460
 set.hidden = true
 

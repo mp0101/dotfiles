@@ -39,6 +39,22 @@ plugins.startup ({function(use)
   })
   use ("nvim-telescope/telescope-fzy-native.nvim")
   use ("tami5/sqlite.lua")
+  use ({
+    "neovim/nvim-lspconfig",
+    config = function()
+      require ("plugins.lspconfig")
+    end
+  })
+  use ({
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require ("plugins.cmp")
+    end
+  })
+  use ("hrsh7th/cmp-nvim-lsp")
+  use ("saadparwaiz1/cmp_luasnip")
+  use ("L3MON4D3/LuaSnip")
+  use ("j-hui/fidget.nvim")
 
   end,
   config = {

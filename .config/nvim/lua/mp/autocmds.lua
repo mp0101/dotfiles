@@ -9,3 +9,16 @@ autocmd('TextYankPost', {
   end
 })
 
+local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
+local setCursorline = function(event, value, pattern)
+  vim.api.nvim_create_autocmd(event, {
+    group = group,
+    pattern = pattern,
+    callback = function()
+      vim.opt_local.cursorline = value
+    end,
+  })
+end
+setCursorline("WinLeave", false)
+setCursorline("WinEnter", true)
+setCursorline("FileType", false, "TelescopePrompt")
